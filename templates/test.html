@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+          crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+            integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div class="container">
+    <h2>Image Processor Demo</h2>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <div class="col-xs-8">
+            <div class="form-group">
+                 {% if error_msg %}
+                     <label class="control-label" style="color: red">{{error_msg}}</label>
+                 {% endif %}
+            </div>
+            <div style="float: left; width: 80%">
+                <div class="form-group">
+                    <p>Keywords for the following operations: <br/>
+                        1. Flip Vertical (FV) <br/>
+                        2. Flip Horizontal (FH) <br/>
+                        3. Rotate Right (RR) <br/>
+                        4. Rotate Left (RL) <br/>
+                        5. Rotate +/- n degrees (R:N) <br/>
+                        6. Grayscale (G) <br/>
+                        7. Thumbnail (T) <br/>
+                        8. Resize (RS:Width,height) <br/>
+                    </p>
+                    <label class="control-label" name="note" style="color: red">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Upload an Image file</label>
+                    <input type="file" name="file">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Pass Sequence of Operations (seperated by space)</label>
+                    <input type="text" name="txtOperation" placeholder="FV T RS:600,480">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Perform Operation(s)" style="color: white; background-color: red"/>
+                </div>
+            </div>
+            <div style="float: right; width: 10%">
+            <div>
+                {% if image_data %}
+                <img src="data:{{ image_type }};base64, {{ image_data }}"/>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
